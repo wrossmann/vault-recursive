@@ -11,7 +11,7 @@ function recursive_list() {
 		else
 			echo ${basepath}${line}
 		fi
-	done < <(vault kv list $basepath | sed 1,2d)
+	done < <(vault kv list -format json $basepath | jq -r '.[]')
 }
 
 function recursive_delete_check() {
